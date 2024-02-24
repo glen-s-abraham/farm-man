@@ -9,6 +9,10 @@ import com.farmman.management.entities.HydroponicSystem;
 import com.farmman.management.services.HydroponicSystemService;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import jakarta.persistence.EntityNotFoundException;
 
 import java.util.List;
 
@@ -23,7 +27,14 @@ public class HydroponicSystemController {
         this.service = service;
     }
     @PostMapping
-    @Operation(summary = "Create a new hydroponic system")
+    @Operation(
+        summary = "Create a new hydroponic system",
+        responses = {
+            @ApiResponse(description = "Created", responseCode = "201", 
+                content = @Content(schema = @Schema(implementation = HydroponicSystem.class))),
+            @ApiResponse(description = "Bad Request", responseCode = "400")
+        }
+    )
     public ResponseEntity<HydroponicSystem> createSystem(@RequestBody HydroponicSystem system) {
         HydroponicSystem savedSystem = service.saveHydroponicSystem(system);
         return new ResponseEntity<>(savedSystem, HttpStatus.CREATED);
@@ -48,5 +59,26 @@ public class HydroponicSystemController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    // Additional endpoints as needed
+    @PutMapping("/{id}")
+    @Operation(
+        summary = "Update an existing hydroponic system by its ID",
+        responses = {
+            @ApiResponse(description = "OK", responseCode = "200", 
+                content = @Content(schema = @Schema(implementation = HydroponicSystem.class))),
+            @ApiResponse(description = "Not Found", responseCode = "404"),
+            @ApiResponse(description = "Bad Request", responseCode = "400")
+        }
+    )
+    public ResponseEntity<HydroponicSystem> updateSystem(@PathVariable Long id, @RequestBody HydroponicSystem newSystemData) {
+        try {
+            HydroponicSystem updatedSystem = service.updateHydroponicSystem(id, newSystemData);
+            return ResponseEntity.ok(updatedSystem);
+        } catch (EntityNotFoundException e) {
+            // Handle the case where the hydroponic system with the given ID doesn't exist
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } catch (Exception e) {
+            // Handle other exceptions
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+    }
 }
