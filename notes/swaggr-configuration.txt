@@ -1,0 +1,77 @@
+Absolutely, Swagger is a popular framework for API documentation and it integrates well with Spring applications. To add Swagger documentation to your Spring Boot project, you would typically use Springfox or OpenAPI (springdoc-openapi).
+
+Here are the steps to add Swagger documentation using Springdoc OpenAPI, which is a newer and more actively maintained library than Springfox:
+
+Add the Dependency
+
+Include the following dependency in your Maven pom.xml:
+
+<dependency>
+    <groupId>org.springdoc</groupId>
+    <artifactId>springdoc-openapi-ui</artifactId>
+    <version>1.6.6</version> <!-- Check for the latest version -->
+</dependency>
+Or for Gradle, add it to your build.gradle:
+
+implementation 'org.springdoc:springdoc-openapi-ui:1.6.6' // Check for the latest version
+Configure OpenAPI
+
+Springdoc OpenAPI automatically generates and serves the OpenAPI description by default, which by default is available at /v3/api-docs. The Swagger UI is exposed under /swagger-ui.html.
+
+Customize API Info (Optional)
+
+You can customize your OpenAPI documentation by creating a configuration bean:
+
+import org.springdoc.core.GroupedOpenApi;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class OpenApiConfig {
+    @Bean
+    public GroupedOpenApi publicApi() {
+        return GroupedOpenApi.builder()
+            .group("spring")
+            .pathsToMatch("/api/**")
+            .build();
+    }
+}
+If you want to customize the information displayed on the Swagger UI page, you can use the OpenAPI bean:
+
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class SwaggerConfig {
+    @Bean
+    public OpenAPI customOpenAPI() {
+        return new OpenAPI().info(new Info()
+            .title("Hydroponic Systems API")
+            .version("v1")
+            .description("API for managing hydroponic systems")
+            .termsOfService("http://swagger.io/terms/")
+            .license(new License().name("Apache 2.0").url("http://springdoc.org")));
+    }
+}
+Add Annotations to Controller Methods
+
+To further enhance the API documentation, you can use OpenAPI 3 annotations in your controller, such as @Operation, @ApiResponse, @Parameter, etc.
+
+@PostMapping
+@Operation(summary = "Create a new hydroponic system")
+public ResponseEntity<HydroponicSystem> createSystem(@RequestBody HydroponicSystem system) {
+    // ...
+}
+
+@GetMapping("/{id}")
+@Operation(summary = "Get a hydroponic system by its ID")
+public ResponseEntity<HydroponicSystem> getSystemById(@PathVariable Long id) {
+    // ...
+}
+Running the Application
+
+Once you've configured Swagger with Springdoc OpenAPI, you can run your Spring Boot application. By default, you can access the Swagger UI at http://localhost:8080/swagger-ui.html and see your API documented with the ability to test endpoints directly from the web interface.
+
+Remember to keep the Swagger documentation up-to-date as your API evolves, documenting any new endpoints, path variables, query parameters, request bodies, and response formats to maintain a useful and accurate resource for developers who are consuming your API.

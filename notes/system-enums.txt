@@ -1,0 +1,22 @@
+System Type:
+
+Nutrient Film Technique (NFT) - A system where a continuous flow of nutrient solution runs over the roots of plants that are held in channels or gutters.
+Deep Water Culture (DWC) - Plants are suspended in a solution of nutrient-rich, oxygenated water in a reservoir.
+Ebb and Flow (Flood and Drain) - The system floods the growing area with nutrient solution at regular intervals and then drains back into the reservoir.
+Aeroponics - Plants are grown in an air or mist environment with no soil or aggregate medium, with nutrient solution delivered through a fine mist sprayed onto the roots.
+Drip System (Top Feed) - A system that uses a pump to deliver nutrient solution through drip lines directly to the base of each plant.
+Wick System - A passive system using a wick to draw nutrient solution from a reservoir up into the growing medium.
+Aquaponics - Combines conventional aquaculture (raising aquatic animals) with hydroponics, with the aquatic waste providing nutrients for plants.
+Hybrid Systems - These systems combine two or more of the above methods (e.g., Aeroponic-DWC hybrid).
+Vertical Hydroponics - Plants are grown vertically, which can include any of the above systems tailored for vertical growth to save space.
+Kratky Method - A passive hydroponic technique where plants are suspended above a reservoir of nutrient solution and grow down into the solution as they consume it.
+Growth Stage:
+
+Germination - The process by which a plant grows from a seed or similar structure.
+Seedling - The young plant stage, following germination when it has sprouted leaves and begun to develop a root system.
+Vegetative - The growth phase where the plant is focused on accumulating biomass and growing in size. For some plants, this stage is manipulated to last indefinitely for continual leaf harvest.
+Pre-floral/Pre-bud - The transitional phase where the plant is preparing to enter the flowering stage; changes in light typically trigger this stage for photoperiodic plants.
+Flowering - The reproductive stage where the plant develops flowers. For fruiting plants, this is the stage where fruits start to develop after pollination.
+Fruiting - Once flowers have been pollinated, the plant devotes energy to develop fruits or vegetables.
+Ripening - The final stage where fruits reach peak maturity and are ready for harvest.
+Senescence - The plant either begins to show signs of old age and decline, or if it's an annual, it completes its life cycle.
